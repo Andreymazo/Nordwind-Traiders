@@ -79,7 +79,7 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
     # for i in ff:
     #     # print(i)
     #     fff.append(i[1])
-        # del i[index]
+    # del i[index]
     # print(fff)
 
     # print(len(fff))
@@ -144,8 +144,8 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
                 # print(i[1])
                 prod.append(i[1])
             # print(prod)
-                # ww = i[1].split(' ')
-                # prod=i[0].get('products')
+            # ww = i[1].split(' ')
+            # prod=i[0].get('products')
             # Сравниваем на совпадение продукта в 8 колонке data_supl и 2 колонка data_prod
             # print(prod[1:])
             # print(len(data_prod))
@@ -180,14 +180,30 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
                     #      iii.append('----')
                     #      new_prod.append(iii)
         # new_prod_finish = []#################Nado iz 2 spiskov sdelat 1 77 strok#####################
+        for i in new_prod:########Zapishem v bazu
+             print(i)
+
+        # conn.autocommit = True
+        # with conn.cursor() as cur:
         for i in new_prod:
-            print(i)
-        with open('result_products.csv', 'w+', encoding='utf-8', newline='') as f:#
-            # f.writelines(new_prod)
-            www = csv.writer(f, delimiter=' ',
-                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            for h in new_prod:
-                www.writerow(h)
+            # print(i[0])
+            # cur.execute(
+            #     #         'INSERT INTO suppliers(company_name, contact, address, phone, fax, homepage, products) VALUES (%s, %s, %s, %s, %s, %s, %s)',
+            #     #         (i.get('company_name'), i.get('contact'), i.get('address'), i.get('phone'), i.get('fax'), i.get("homepage"),
+            cur.execute(
+                "INSERT INTO products (product_id, product_name, category_id, quantity_per_unit, unit_price, units_in_stock, units_on_order, reorder_level, discontinued, supplier_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ",
+                (i[0], i[1], i[
+                    2], i[3], i[4], i[5], i[6], i[7], i[8], i[9])),
+                #'UPDATE products SET (product_id=%s, product_name=%s, category_id=%s, quantity_per_unit=%s, unit_price=%s, units_in_stock=%s, units_on_order=%s, reorder_level=%s, discontinued=%s, supplier_id=%s WHERE product_id=%s, product_name=%s, category_id=%s, quantity_per_unit=%s, unit_price=%s, units_in_stock=%s, units_on_order=%s, reorder_level=%s, discontinued=%s, supplier_id=%s ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                # (i[0], i[1], i[
+                #  2], i[3], i[4], i[5], i[6], i[7], i[8], i[9]))  # i[index],
+        # conn.close()
+        # with open('result_products.csv', 'w+', encoding='utf-8', newline='') as f:#
+        #     # f.writelines(new_prod)
+        #     www = csv.writer(f, delimiter=' ',
+        #                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        #     for h in new_prod:
+        #         www.writerow(h)
         # for i in data_prod:
         #     print(i)
 
@@ -226,8 +242,8 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
         # fin_sort = sorted(tt, key=lambda x: x[0])
         # print(fin_sort)
 
-                #             if j[0][0] != k[0][0]:
-                # new_prod_fin.append(k)
+        #             if j[0][0] != k[0][0]:
+        # new_prod_fin.append(k)
         # print(type(new_prod_finish[0][0]))#[1:])
         # new_prod_finish1=[int(x) for x in new_prod_finish]
         # for t in new_prod_finish[1:]:
@@ -236,9 +252,9 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
         #         #t = t.strip('\'')
         #         #t=t.split('\'')
         #     t[0]=t[0].split(' ')
-            # except AttributeError as e:
-            #     print(e)
-            # print(type(t[0]))
+        # except AttributeError as e:
+        #     print(e)
+        # print(type(t[0]))
         #     nn=[]
         #     nn.append(t)
         #
@@ -246,8 +262,7 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
         # for ig in fin_sort:
         #     print(ig)
 
-
-                # print(ffff)
+        # print(ffff)
         # ffff=sort_qwck_sort.quick_sort(new_prod_finish, 0)
         # print(len(ffff))
         # for l in new_prod_finish:
@@ -256,7 +271,6 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
         # for l in new_prod_finish:
         #     print(l)
 
-        # new_prod_lst=[list(i[0]) for i[0] in new_prod or 0 if i[0] is None]
         # print(new_prod)
         # for i in new_prod:
         #     print(i)
@@ -273,7 +287,6 @@ with open('suppliers.json', 'r', encoding='utf-8') as f:
     # print(new_prod)
     # print(len(new_prod))
     # print(type(new_prod))
-    # new_prod_sort = sort_qwck_sort.quick_sort(new_prod, 0)
     # for i in new_prod_sort:
     #     print(i)
     # print(new_prod_sort)
